@@ -8,7 +8,7 @@
 		document.addEventListener('DOMContentLoaded', (event) => {
 			/*情緒分數*/
 			const feelings = document.getElementById('feelings');
-			var feelingsValue;
+			var feelingsValue = Math.floor(feelings.value / 25) + 1;
 			feelings.addEventListener('input', function () {
 				const value = Math.floor(feelings.value / 25) + 1;
 				feelingsValue = value;
