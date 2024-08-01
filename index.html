@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="zh-tw">
 
@@ -16,7 +15,7 @@
 
 			/*情緒分數*/
 			const feelings = document.getElementById('feelings');
-			var feelingsValue;
+			var feelingsValue = Math.floor(feelings.value / 25) + 1;
 			feelings.addEventListener('input', function () {
 				const value = Math.floor(feelings.value / 25) + 1;
 				feelingsValue = value;
@@ -61,7 +60,7 @@
 					MoodWord: document.getElementById('mood').value,
 				};
 
-				fetch('http://localhost:3000', {
+				fetch('https://9247-2402-7500-5ce-2b57-486b-c92-bb-c83f.ngrok-free.app', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -118,115 +117,3 @@
 </body>
 
 </html>
-=======
-<!DOCTYPE html>
-<html lang="zh-tw">
-
-<head>
-	<meta charset="UTF-8">
-	<title>情緒抒發</title>
-	<script>
-		document.addEventListener('DOMContentLoaded', (event) => {
-			/*情緒分數*/
-			const feelings = document.getElementById('feelings');
-			var feelingsValue = Math.floor(feelings.value / 25) + 1;
-			feelings.addEventListener('input', function () {
-				const value = Math.floor(feelings.value / 25) + 1;
-				feelingsValue = value;
-				if (value === 0)
-					document.querySelector('.feeling').textContent = '非常不好';
-				else if (value === 1)
-					document.querySelector('.feeling').textContent = '不好';
-				else if (value === 2)
-					document.querySelector('.feeling').textContent = '普通';
-				else if (value === 3)
-					document.querySelector('.feeling').textContent = '好';
-				else
-					document.querySelector('.feeling').textContent = '非常好';
-			});
-
-			/*情緒關鍵詞*/
-			const selectedFeelings = [];
-			// 為每個情緒按鈕添加事件監聽器
-			document.querySelectorAll('input[type="button"]').forEach(button => {
-				button.addEventListener('click', () => {
-					const feeling = button.value;
-					if (!selectedFeelings.includes(feeling)) {
-						selectedFeelings.push(feeling);
-						button.style.backgroundColor = 'lightblue'; // 標記為已選擇
-					} else {
-						const index = selectedFeelings.indexOf(feeling);
-						selectedFeelings.splice(index, 1);
-						button.style.backgroundColor = ''; // 取消標記
-					}
-				});
-			});
-
-			/*表單提交*/
-			document.getElementById('dataForm').addEventListener('submit', function (e) {
-				// 防止表單的預設提交行為
-				e.preventDefault();
-				const formData = {
-					MoodVaule: feelingsValue,
-					MoodKeyWord: selectedFeelings,
-					MoodWord: document.getElementById('mood').value,
-				};
-
-				fetch('https://72a3-2001-b011-8013-fd2d-a9ad-2e1-c776-31d.ngrok-free.app', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(formData),
-				})
-					.then(response => {
-						if (!response.ok) {
-							throw new Error('Network response was not ok');
-						}
-						return response.json();
-					})
-					.then(data => {
-						console.log(data);
-					})
-					.catch(error => {
-						console.error('There has been a problem with your fetch operation:', error);
-					});
-				location.reload();
-			});
-		});
-	</script>
-</head>
-
-<body>
-	<form id="dataForm">
-		<div>
-			<p>你現在感受如何呢?</p>
-			<p class="feeling">普通</p>
-			<input type="range" id="feelings" name="feelings" min="0" max="100" value="50">
-		</div>
-		<div>
-			<p>請選擇你覺得與你狀態相符的關鍵詞</p>
-			<input type="button" id="emptiness" name="emptiness" value="空虛">
-			<input type="button" id="heartache" name="heartache" value="心痛">
-			<input type="button" id="frustrated" name="frustrated" value="沮喪">
-			<input type="button" id="happy" name="happy" value="快樂"><br>
-			<input type="button" id="disturbed" name="disturbed" value="不安">
-			<input type="button" id="panic" name="panic" value="慌張">
-			<input type="button" id="frightened" name="frightened" value="驚恐">
-			<input type="button" id="angry" name="angry" value="生氣"><br>
-			<input type="button" id="restless" name="restless" value="焦躁">
-			<input type="button" id="bored" name="bored" value="厭煩">
-			<input type="button" id="anguish" name="anguish" value="煩悶">
-			<input type="button" id="excited" name="excited" value="興奮"><br>
-		</div>
-		<div>
-			<p>請試著寫下你現在的情緒與想法</p>
-			<input type="text" id="mood" name="mood" style="height:100px; width:300px">
-		</div>
-		<button type="submit">提交</button>
-	</form>
-
-</body>
-
-</html>
->>>>>>> 5f4eef7239afbefc29b19d712775a4e712d7d5cb
