@@ -3,9 +3,16 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>表單提交到 MongoDB</title>
+	<title>情緒抒發</title>
 	<script>
-		document.addEventListener('DOMContentLoaded', (event) => {
+		document.addEventListener('DOMContentLoaded', async (event) => {
+			await liff.init({ liffId: "2004371786-VM8L0OQr" });
+			if (!liff.isLoggedIn()) {
+				liff.login();
+			}
+			const profile = await liff.getProfile();
+			const userId = profile.userId;
+
 			/*情緒分數*/
 			const feelings = document.getElementById('feelings');
 			var feelingsValue;
@@ -46,12 +53,14 @@
 				// 防止表單的預設提交行為
 				e.preventDefault();
 				const formData = {
+					Time: new Date().toLocaleString(),
+					LineID: userId,
 					MoodVaule: feelingsValue,
 					MoodKeyWord: selectedFeelings,
 					MoodWord: document.getElementById('mood').value,
 				};
 
-				fetch('http://localhost:3000/', {
+				fetch('http://localhost:3000', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -70,6 +79,7 @@
 					.catch(error => {
 						console.error('There has been a problem with your fetch operation:', error);
 					});
+				location.reload();
 			});
 		});
 	</script>
