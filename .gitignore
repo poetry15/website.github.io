@@ -1,0 +1,15 @@
+/.venv
+/0718.csproj
+/0718.sln
+/111.html
+/bin
+/node_modules
+/obj
+/package-lock.json
+/package.json
+/Program.cs
+/script.js
+/server.js
+/tempCodeRunnerFile.js
+/tempCodeRunnerFile.py
+/test.py
