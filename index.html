@@ -16,17 +16,17 @@
 
 			/*情緒分數*/
 			const feelings = document.getElementById('feelings');
-			var feelingsValue = Math.floor(feelings.value / 25) + 1;
+			var feelingsValue = feelings.value;
 			feelings.addEventListener('input', function () {
-				const value = Math.floor(feelings.value / 25) + 1;
+				const value = feelings.value;
 				feelingsValue = value;
-				if (value === 0)
+				if (value === 1)
 					document.querySelector('.feeling').textContent = '非常不好';
-				else if (value === 1)
-					document.querySelector('.feeling').textContent = '不好';
 				else if (value === 2)
-					document.querySelector('.feeling').textContent = '普通';
+					document.querySelector('.feeling').textContent = '不好';
 				else if (value === 3)
+					document.querySelector('.feeling').textContent = '普通';
+				else if (value === 4)
 					document.querySelector('.feeling').textContent = '好';
 				else
 					document.querySelector('.feeling').textContent = '非常好';
@@ -91,7 +91,7 @@
 		<div>
 			<p>你現在感受如何呢?</p>
 			<p class="feeling">普通</p>
-			<input type="range" id="feelings" name="feelings" min="0" max="100" value="50">
+			<input type="range" id="feelings" name="feelings" min="1" max="5" value="3">
 		</div>
 		<div>
 			<p>請選擇你覺得與你狀態相符的關鍵詞</p>
