@@ -2,7 +2,7 @@
 <html lang="zh-tw">
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>情緒抒發</title>
 	<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 	<script>
@@ -61,7 +61,7 @@
 					MoodWord: document.getElementById('mood').value,
 				};
 
-				fetch('https://9247-2402-7500-5ce-2b57-486b-c92-bb-c83f.ngrok-free.app', {
+				fetch('https://6c0c-2402-7500-5ce-2b57-486b-c92-bb-c83f.ngrok-free.app', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -112,7 +112,7 @@
 			<p>請試著寫下你現在的情緒與想法</p>
 			<input type="text" id="mood" name="mood" style="height:100px; width:300px">
 		</div>
-		<button type="submit">提交</button>
+		<button type="submit">提交</button>	
 	</form>
 
 </body>
